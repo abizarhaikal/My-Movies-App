@@ -5,4 +5,5 @@
     <string name="movies_trending">Movies Trending</string>
     <string name="title_myfavorites">Favorite</string>
     <string name="title_favorite">Favorite</string>
+    <string name="title_favorites">Favorites</string>
 </resources>

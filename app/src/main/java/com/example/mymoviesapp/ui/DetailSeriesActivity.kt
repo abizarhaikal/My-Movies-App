@@ -41,7 +41,7 @@ class DetailSeriesActivity : AppCompatActivity() {
         setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            v.setPadding(systemBars.left, 0, systemBars.right, systemBars.bottom)
             insets
         }
 
@@ -92,12 +92,10 @@ class DetailSeriesActivity : AppCompatActivity() {
                     is ResultState.Loading -> {
                         showToast("Loading")
                     }
-
                     is ResultState.Success -> {
                         showToast("Success")
                         val image = result.data.posterPath
                         val fullImageUrl = url + image
-                        showImage(fullImageUrl)
                         Glide.with(this)
                             .load(fullImageUrl)
                             .into(binding.imageBanner)
@@ -179,28 +177,28 @@ class DetailSeriesActivity : AppCompatActivity() {
         }
     }
 
-    private fun showImage(image: String) {
-        Glide.with(this)
-            .asBitmap()
-            .load(image)
-            .into(object : CustomTarget<Bitmap>() {
-                override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-
-                    Palette.from(resource).generate { pallete ->
-                        pallete?.dominantSwatch?.let { swatch ->
-                            val color = swatch.rgb
-
-                            this@DetailSeriesActivity.window.statusBarColor = color
-                        }
-                    }
-                }
-
-                override fun onLoadCleared(placeholder: Drawable?) {
-                    //do Nothing
-                }
-            })
-
-    }
+//    private fun showImage(image: String) {
+//        Glide.with(this)
+//            .asBitmap()
+//            .load(image)
+//            .into(object : CustomTarget<Bitmap>() {
+//                override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+//
+//                    Palette.from(resource).generate { pallete ->
+//                        pallete?.dominantSwatch?.let { swatch ->
+//                            val color = swatch.rgb
+//
+//                            this@DetailSeriesActivity.window.statusBarColor = color
+//                        }
+//                    }
+//                }
+//
+//                override fun onLoadCleared(placeholder: Drawable?) {
+//                    //do Nothing
+//                }
+//            })
+//
+//    }
 
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()

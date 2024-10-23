@@ -1,6 +1,7 @@
 package com.example.core.data.remote
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import com.example.core.data.ResponseCredits
 import com.example.core.data.ResponseDetailMovie
 import com.example.core.data.ResponseDetailSeries
@@ -8,6 +9,8 @@ import com.example.core.data.ResultState
 import com.example.core.data.ResultsItemActors
 import com.example.core.data.ResultsItemNow
 import com.example.core.data.ResultsItemSeries
+import com.example.core.data.local.MoviesEntity
+import com.example.core.data.local.database.MoviesDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -112,4 +115,5 @@ class RemoteDataSource(private val apiService: ApiService) {
             }
         }.flowOn(Dispatchers.IO)
     }
+
 }

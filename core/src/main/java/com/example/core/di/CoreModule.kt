@@ -1,7 +1,11 @@
 package com.example.core.di
 
 
-import com.example.core.data.MoviesRepository
+import androidx.room.Room
+import com.example.core.data.local.LocalDataSource
+import com.example.core.domain.repository.MoviesRepository
+import com.example.core.data.local.database.MoviesDatabase
+import com.example.core.data.remote.RemoteDataSource
 import com.example.core.domain.repository.IMoviesRepository
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -38,6 +42,20 @@ val networkModule = module {
 }
 
 val repositoryModule = module {
-    single { com.example.core.data.remote.RemoteDataSource(get()) }
-    single<IMoviesRepository> { MoviesRepository(get()) }
+    single { RemoteDataSource(get()) }
+    single { LocalDataSource(get()) }
+    single<IMoviesRepository> { MoviesRepository(get(), get()) }
+}
+
+val databaseModule = module {
+    single {
+        Room.databaseBuilder(
+            get(),
+            MoviesDatabase::class.java,
+            "Movies.db"
+        ).fallbackToDestructiveMigration().build()
+    }
+    single {
+        get<MoviesDatabase>().moviesDao()
+    }
 }

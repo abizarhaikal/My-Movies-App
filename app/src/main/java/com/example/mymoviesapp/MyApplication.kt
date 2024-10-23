@@ -1,6 +1,7 @@
 package com.example.mymoviesapp
 
 import android.app.Application
+import com.example.core.di.databaseModule
 import com.example.core.di.networkModule
 import com.example.core.di.repositoryModule
 import com.example.mymoviesapp.di.useCaseModule
@@ -14,14 +15,15 @@ class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         startKoin {
-            androidLogger(Level.NONE)
+            androidLogger(Level.DEBUG)
             androidContext(this@MyApplication)
             modules(
                 listOf(
                     networkModule,
                     repositoryModule,
                     useCaseModule,
-                    viewModelModule
+                    viewModelModule,
+                    databaseModule,
                 )
             )
         }

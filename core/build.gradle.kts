@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("com.google.devtools.ksp")
+    id("kotlin-parcelize")
+    kotlin("kapt")
 }
 
 apply(from = "../shared_dependency.gradle")
@@ -60,4 +63,8 @@ dependencies {
 
     implementation ("io.insert-koin:koin-core:3.3.3")
     implementation ("io.insert-koin:koin-android:3.3.3")
+
+    implementation("androidx.room:room-runtime:2.6.1")
+    kapt("androidx.room:room-compiler:2.6.1") // Ganti ksp dengan kapt jika menggunakan kapt
+    implementation("androidx.room:room-ktx:2.6.1")
 }

@@ -1,7 +1,6 @@
 package com.example.mymoviesapp.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.core.data.ResultsItem
 
 fun <T> createDiffCallback(
     areItemsTheSame: (oldItem: T, newItem: T) -> Boolean,

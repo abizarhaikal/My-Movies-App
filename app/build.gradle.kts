@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("com.google.devtools.ksp")
+    kotlin("kapt")
 }
 
 apply(from = "../shared_dependency.gradle")
@@ -39,14 +40,18 @@ android {
     buildFeatures {
         viewBinding = true
     }
-    dynamicFeatures += setOf(":MyFavorites", ":favorite")
+    java {
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(17))
+        }
+    }
+    dynamicFeatures += setOf(":favorite")
 }
 
 dependencies {
 
     // Dependensi ke module core tetap
     implementation(project(":core"))
-    implementation(project(":favorite"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -76,6 +81,7 @@ dependencies {
     implementation("io.insert-koin:koin-android:3.3.3")
 
     implementation("androidx.room:room-runtime:2.6.1")
-    ksp("androidx.room:room-compiler:2.6.1")
+    kapt("androidx.room:room-compiler:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
+
 }

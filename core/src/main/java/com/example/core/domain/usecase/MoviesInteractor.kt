@@ -7,6 +7,7 @@ import com.example.core.data.ResultState
 import com.example.core.data.ResultsItemActors
 import com.example.core.data.ResultsItemNow
 import com.example.core.data.ResultsItemSeries
+import com.example.core.data.model.Movies
 import com.example.core.domain.repository.IMoviesRepository
 import kotlinx.coroutines.flow.Flow
 
@@ -37,6 +38,22 @@ class MoviesInteractor(private val moviesRepository: IMoviesRepository) : Movies
 
     override suspend fun getCreditSeries(id: Int): Flow<ResultState<ResponseCredits>> {
         return moviesRepository.getCreditsSeries(id)
+    }
+
+    override suspend fun getAllSavedMovies(): Flow<List<Movies>> {
+        return moviesRepository.getAllSavedMovies()
+    }
+
+    override suspend fun insertMovies(movies: List<Movies>) {
+        return moviesRepository.insertMovies(movies)
+    }
+
+    override suspend fun deleteMoviesById(id: Int) {
+        return moviesRepository.deleteMoviesById(id)
+    }
+
+    override suspend fun getFavoriteUser(id: Int): Flow<Movies?> {
+        return moviesRepository.getFavoriteUser(id)
     }
 
 }
