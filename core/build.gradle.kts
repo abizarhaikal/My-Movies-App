@@ -55,16 +55,9 @@ dependencies {
     implementation (libs.androidx.navigation.fragment.ktx)
     implementation (libs.androidx.navigation.ui.ktx)
 
-    implementation("com.github.bumptech.glide:glide:4.16.0")
-
-    implementation("com.squareup.retrofit2:retrofit:2.11.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
-    implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
-
-    implementation ("io.insert-koin:koin-core:3.3.3")
-    implementation ("io.insert-koin:koin-android:3.3.3")
 
     implementation("androidx.room:room-runtime:2.6.1")
-    kapt("androidx.room:room-compiler:2.6.1") // Ganti ksp dengan kapt jika menggunakan kapt
+    kapt("androidx.room:room-compiler:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
+
 }

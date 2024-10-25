@@ -4,8 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.core.data.CastItemSeries
-import com.example.core.data.ResponseCreditSeries
 import com.example.core.data.ResponseCredits
 import com.example.core.data.ResponseDetailSeries
 import com.example.core.data.ResultState
